@@ -148,7 +148,7 @@
                             <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2 ">
                                 <div>
                                     <p class="mt-5 text-lg font-medium">Resettlement Site</p>
-                                    <p class="text-sm text-gray-500">Enter applicant's resttlement site if already have
+                                    <p class="text-sm text-gray-500">Enter applicant's resttelement site if already have
                                     </p>
 
                                     <div class="grid grid-cols-1 my-4 md:grid-cols-2">
@@ -158,7 +158,7 @@
                                                 class="text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none">
                                             <label for="with_resettlement"
                                                 class="ml-2 text-sm font-medium text-gray-500">
-                                                With Resettle site
+                                                With Resettlement site
                                             </label>
                                         </div>
 
@@ -167,7 +167,7 @@
                                                 type="radio" value=0 disabled
                                                 class="text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none">
                                             <label for="no_resettlement" class="ml-2 text-sm font-medium text-gray-500">
-                                                No Resettle site
+                                                No Resettlement site
                                             </label>
                                         </div>
                                     </div>

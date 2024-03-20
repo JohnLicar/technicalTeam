@@ -24,7 +24,12 @@ new class extends Component
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
                     <a href="{{ route('dashboard') }}" wire:navigate>
-                        <x-application-logo class="block w-auto text-white fill-current h-9" />
+                        <div class="flex flex-col items-center justify-center w-full">
+
+                            <img src="{{ asset('images/Logo.png') }}" class="w-10 h-10" alt="">
+
+                            <p class="text-white">Technical Division IS</p>
+                        </div>
                     </a>
                 </div>
 
@@ -41,6 +46,15 @@ new class extends Component
                     <x-nav-link class="text-white" :href="route('validation.index')"
                         :active="request()->routeIs('validation.*')" wire:navigate>
                         {{ 'Validation' }}
+                    </x-nav-link>
+                </div>
+                @endrole
+
+                @hasanyrole('social_prep|admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link class="text-white" :href="route('social_prep.index')"
+                        :active="request()->routeIs('social_prep.*')" wire:navigate>
+                        {{ 'Social Prep' }}
                     </x-nav-link>
                 </div>
                 @endrole
@@ -122,23 +136,37 @@ new class extends Component
             </x-responsive-nav-link>
         </div>
 
+        @hasanyrole('validator|admin')
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('validation.index')" :active="request()->routeIs('validation.*')"
                 wire:navigate>
                 {{ 'Validation' }}
             </x-responsive-nav-link>
         </div>
+        @endhasanyrole
 
+        @hasanyrole('social_prep|admin')
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('social_prep.index')" :active="request()->routeIs('social_prep.*')"
+                wire:navigate>
+                {{ 'Social Prep' }}
+            </x-responsive-nav-link>
+        </div>
+        @endhasanyrole()
+
+        @role('admin')
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')" wire:navigate>
                 {{ 'Users' }}
             </x-responsive-nav-link>
         </div>
+
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')" wire:navigate>
-                {{ 'Roles and Permission' }}
+            <x-responsive-nav-link :href="route('system.index')" :active="request()->routeIs('system.*')" wire:navigate>
+                {{ 'System Config' }}
             </x-responsive-nav-link>
         </div>
+        @endrole
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">

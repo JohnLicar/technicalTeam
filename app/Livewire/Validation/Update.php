@@ -140,11 +140,11 @@ class Update extends Component
         $this->date_of_validation = $applicant->date_of_validation;
         $this->recommendation = $applicant->recommendation;
         $this->remarks = $applicant->remarks;
-        $this->spouse_name = $applicant->spouse->spouse_name;
-        $this->spouse_birthday = $applicant->spouse->spouse_birthday;
-        $this->spouse_civil_status = $applicant->spouse->spouse_civil_status;
-        $this->spouse_gender = $applicant->spouse->spouse_gender;
-        $this->classification = $applicant->housingOccupancies->pluck('id')->toArray();
+        $this->spouse_name = $applicant->spouse?->spouse_name;
+        $this->spouse_birthday = $applicant->spouse?->spouse_birthday;
+        $this->spouse_civil_status = $applicant->spouse?->spouse_civil_status;
+        $this->spouse_gender = $applicant->spouse?->spouse_gender;
+        $this->classification = $applicant->housingOccupancies?->pluck('id')->toArray();
         $this->resettlement = $applicant->resettlements;
         $this->site = $applicant->resettlement?->site->id;
         $this->phase = $applicant->resettlement?->phase;

@@ -276,7 +276,7 @@
                             <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2 ">
                                 <div>
                                     <p class="mt-5 text-lg font-medium">Resettlement Site</p>
-                                    <p class="text-sm text-gray-500">Enter applicant's resttlement site if already have
+                                    <p class="text-sm text-gray-500">Enter applicant's resettlement site if already have
                                     </p>
 
                                     <div class="grid grid-cols-1 my-4 md:grid-cols-2">

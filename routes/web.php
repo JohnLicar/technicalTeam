@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\SocialPrep\Index as SocialPrepIndex;
 use App\Livewire\Users\Index;
 use App\Livewire\SystemConfig\Index as SystemConfigIndex;
 use App\Livewire\Validation\Create;
@@ -30,6 +31,11 @@ Route::group(['prefix' => 'validation', 'middleware' => ['auth', 'approved']], f
     Route::get('create', Create::class)->name('validation.create');
     Route::get('update/{applicant}', Update::class)->name('validation.update');
     Route::get('view/{applicant}', View::class)->name('validation.view');
+});
+
+
+Route::group(['prefix' => 'social_prep', 'middleware' => ['auth', 'approved']], function () {
+    Route::get('/', SocialPrepIndex::class)->name('social_prep.index');
 });
 
 Route::group(['prefix' => 'system-config', 'middleware' => ['auth', 'approved']], function () {

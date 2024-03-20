@@ -465,10 +465,13 @@
                                 Name
                             </x-table.heading>
                             <x-table.heading>
+                                14K Endorsement
+                            </x-table.heading>
+                            <x-table.heading>
                                 Civil Status
                             </x-table.heading>
                             <x-table.heading>
-                                Classification of occupancy
+                                Classification
                             </x-table.heading>
                             <x-table.heading>
                                 Structure
@@ -508,6 +511,10 @@
                                         $applicant->spouse?->spouse_name
                                         }}
                                     </div>
+                                </x-table.cell>
+
+                                <x-table.cell>
+                                    {{$applicant->fourteen ? "Yes" : "No"}}
                                 </x-table.cell>
 
                                 <x-table.cell>
@@ -566,7 +573,7 @@
             </div>
         </div>
     </div>
-    <x-modal name="report">
+    {{-- <x-modal name="report">
         <div class="p-6">
             <div class="mb-5">
                 <p class="text-xl font-medium text-left">Break Down of Data</p>
@@ -645,8 +652,6 @@
                                     {{$applicant->validator?->name}}
                                 </x-table.cell>
 
-
-
                             </x-table.row>
                             @empty
                             <x-no-data />
@@ -664,5 +669,5 @@
                 </x-button.text>
             </div>
         </div>
-    </x-modal>
+    </x-modal> --}}
 </div>

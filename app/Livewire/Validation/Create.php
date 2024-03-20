@@ -113,7 +113,7 @@ class Create extends Component
             'purok_id' => 'nullable',
 
             'name' => 'required|min:5',
-            'birthday' => 'nullable',
+            'birthday' => 'nullable|date',
             'civil_status' => 'required',
             'gender' => 'required',
 
@@ -126,7 +126,7 @@ class Create extends Component
             'remarks' => 'nullable',
 
             'spouse_name' => 'nullable|min:5',
-            'spouse_birthday' => 'nullable',
+            'spouse_birthday' => 'nullable|date',
             'spouse_civil_status' => 'required_with:spouse_name',
             'spouse_gender' => 'required_with:spouse_name',
 

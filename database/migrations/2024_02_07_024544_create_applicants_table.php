@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('gender');
             $table->string('structure');
             $table->string('recommendation');
-            $table->text('remarks');
+            $table->text('remarks')->nullable();
             $table->foreignIdFor(User::class)->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');

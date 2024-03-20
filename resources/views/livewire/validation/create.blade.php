@@ -136,7 +136,7 @@
                                     :bg="'white'" />
 
                                 <div class="relative">
-                                    <select wire:model='spouse_civil_status' required name="spouse_civil_status"
+                                    <select wire:model='spouse_civil_status' name="spouse_civil_status"
                                         id="spouse_civil_status"
                                         class="block w-full p-3 text-sm text-gray-900 bg-transparent border-gray-500 rounded-lg appearance-none border-1 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                                         <option value="" selected>
@@ -160,7 +160,7 @@
                                 </div>
 
                                 <div class="relative">
-                                    <select wire:model='spouse_gender' required name="spouse_gender" id="spouse_gender"
+                                    <select wire:model='spouse_gender' name="spouse_gender" id="spouse_gender"
                                         class="block w-full p-3 text-sm text-gray-900 bg-transparent border-gray-500 rounded-lg appearance-none border-1 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                                         <option value="" selected>
                                             Select Gender
@@ -475,8 +475,8 @@
                         </div>
 
                         <div>
-                            @foreach ($errors as $erros)
-                            <p class="mt-2 text-left text-red-600 trext-sm ">{{ $message }}</p>
+                            @foreach ($errors as $error)
+                            <p class="mt-2 text-left text-red-600 trext-sm ">{{ $error->message }}</p>
                             @endforeach
                         </div>
                         <div class="flex justify-end gap-4 mt-5 ">
