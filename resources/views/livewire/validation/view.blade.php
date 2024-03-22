@@ -51,6 +51,11 @@
                                     class="border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
                                     :value="'Gender'" :name="'gender'" :id="'gender'" :type="'text'" :bg="'white'"
                                     autocomplete />
+
+                                <x-input.floating wire:model='fourteen' disabled
+                                    class="border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
+                                    :value="'14K Endorsement'" :name="'fourteen'" :id="'fourteen'" :type="'text'"
+                                    :bg="'white'" autocomplete />
                             </div>
                         </div>
 
@@ -76,6 +81,11 @@
                                 <x-input.floating wire:model='spouse_gender' disabled
                                     class="border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
                                     :value="'Spouse Gender'" :name="'spouse_gender'" :id="'spouse_gender'"
+                                    :type="'text'" :bg="'white'" autocomplete />
+
+                                <x-input.floating wire:model='spouse_fourteen' disabled
+                                    class="border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
+                                    :value="'14K Endorsement'" :name="'spouse_fourteen'" :id="'spouse_fourteen'"
                                     :type="'text'" :bg="'white'" autocomplete />
                             </div>
                         </div>

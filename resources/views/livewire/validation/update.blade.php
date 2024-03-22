@@ -119,6 +119,29 @@
                                     <p class="mt-2 text-sm text-left text-red-600 ">{{ $message }}</p>
                                     @enderror
                                 </div>
+
+                                <div class="relative">
+                                    <select required wire:model='fourteen' name="fourteen" id="fourteen"
+                                        class="block w-full p-3 text-sm text-gray-900 bg-transparent border-gray-500 rounded-lg appearance-none border-1 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                                        <option value="" selected>
+                                            Select if part of 14K Endorsement
+                                        </option>
+                                        <option value='1'>
+                                            Yes
+                                        </option>
+                                        <option value='0'>
+                                            No
+                                        </option>
+
+                                    </select>
+                                    <p
+                                        class="absolute px-2 text-base text-gray-500 duration-150 ease-in-out bg-white pointer-events-none left-2 peer-valid:left-1 peer-valid:top-0 peer-valid:-translate-y-2 top-3 peer-valid:text-xs ">
+                                        Select if part of 14K Endorsement
+                                    </p>
+                                    @error('spouse_fourteen')
+                                    <p class="mt-2 text-sm text-left text-red-600 ">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 
@@ -175,6 +198,30 @@
                                         Select Gender
                                     </p>
                                     @error('spouse_gender')
+                                    <p class="mt-2 text-sm text-left text-red-600 ">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="relative">
+                                    <select required wire:model='spouse_fourteen' name="spouse_fourteen"
+                                        id="spouse_fourteen"
+                                        class="block w-full p-3 text-sm text-gray-900 bg-transparent border-gray-500 rounded-lg appearance-none border-1 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                                        <option value="" selected>
+                                            Select if part of 14K Endorsement
+                                        </option>
+                                        <option value='1'>
+                                            Yes
+                                        </option>
+                                        <option value='0'>
+                                            No
+                                        </option>
+
+                                    </select>
+                                    <p
+                                        class="absolute px-2 text-base text-gray-500 duration-150 ease-in-out bg-white pointer-events-none left-2 peer-valid:left-1 peer-valid:top-0 peer-valid:-translate-y-2 top-3 peer-valid:text-xs ">
+                                        Select if part of 14K Endorsement
+                                    </p>
+                                    @error('spouse_fourteen')
                                     <p class="mt-2 text-sm text-left text-red-600 ">{{ $message }}</p>
                                     @enderror
                                 </div>

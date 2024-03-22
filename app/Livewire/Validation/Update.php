@@ -33,11 +33,13 @@ class Update extends Component
     public $birthday;
     public $civil_status;
     public $gender;
+    public $fourteen;
 
     public $spouse_name;
     public $spouse_birthday;
     public $spouse_civil_status;
     public $spouse_gender;
+    public $spouse_fourteen;
 
     public $classification = [];
     public $structure;
@@ -101,6 +103,7 @@ class Update extends Component
             'birthday' => 'nullable',
             'civil_status' => 'required',
             'gender' => 'required',
+            'fourteen' => 'nullable|boolean',
 
             'structure' => 'required',
 
@@ -114,6 +117,7 @@ class Update extends Component
             'spouse_birthday' => 'nullable',
             'spouse_civil_status' => 'required_with:spouse_name',
             'spouse_gender' => 'required_with:spouse_name',
+            'spouse_fourteen' => 'nullable|boolean',
 
             'classification' => 'required',
 
@@ -137,6 +141,7 @@ class Update extends Component
         $this->birthday = $applicant->birthday;
         $this->civil_status = $applicant->civil_status;
         $this->gender = $applicant->gender;
+        $this->fourteen = $applicant->fourteen;
         $this->structure = $applicant->structure;
         $this->date_of_validation = $applicant->date_of_validation;
         $this->recommendation = $applicant->recommendation;
@@ -145,6 +150,7 @@ class Update extends Component
         $this->spouse_birthday = $applicant->spouse?->spouse_birthday;
         $this->spouse_civil_status = $applicant->spouse?->spouse_civil_status;
         $this->spouse_gender = $applicant->spouse?->spouse_gender;
+        $this->spouse_fourteen = $applicant->spouse?->spouse_fourteen;
         $this->classification = $applicant->housingOccupancies?->pluck('id')->toArray();
         $this->resettlement = $applicant->resettlements;
         $this->site = $applicant->resettlement?->site->id;
@@ -172,6 +178,7 @@ class Update extends Component
                 'birthday' => Carbon::parse($this->birthday)->format('Y-m-d'),
                 'civil_status' => $this->civil_status,
                 'gender' => $this->gender,
+                'fourteen' => $this->fourteen,
                 'structure' => $this->structure,
                 'date_of_validation' => Carbon::parse($this->date_of_validation)->format('Y-m-d'),
                 'recommendation' => $this->recommendation,
@@ -185,6 +192,8 @@ class Update extends Component
                     'spouse_birthday' => Carbon::parse($this->spouse_birthday)->format('Y-m-d'),
                     'spouse_civil_status' => $this->spouse_civil_status,
                     'spouse_gender' => $this->spouse_gender,
+                    'spouse_fourteen' => $this->spouse_fourteen,
+
                 ]);
             }
 

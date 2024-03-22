@@ -63,13 +63,6 @@ class Create extends Component
 
     public $attachments = [];
 
-    protected $casts = [
-        'birthday' => 'date:Y-m-d',
-        'spouse_birthday' => 'date:Y-m-d',
-    ];
-
-
-
     #[Computed()]
     public function barangays()
     {
@@ -117,7 +110,6 @@ class Create extends Component
     {
         $this->authorize("create applicant");
 
-        // dd($this->fourteen, $this->spouse_fourteen);
         $this->validate([
             'barangay_id' => 'required',
             'purok_id' => 'nullable',

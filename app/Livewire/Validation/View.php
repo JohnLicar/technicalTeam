@@ -20,11 +20,13 @@ class View extends Component
     public $birthday;
     public $civil_status;
     public $gender;
+    public $fourteen;
 
     public $spouse_name;
     public $spouse_birthday;
     public $spouse_civil_status;
     public $spouse_gender;
+    public $spouse_fourteen;
 
     public $classification = [];
     public $structure;
@@ -63,11 +65,13 @@ class View extends Component
         $this->birthday = $this->applicant->birthday;
         $this->civil_status = $this->applicant->civil_status;
         $this->gender = $this->applicant->gender;
+        $this->fourteen = $this->applicant->fourteen ? 'Yes' : 'No';
 
         $this->spouse_name = $this->applicant->spouse?->spouse_name;
         $this->spouse_birthday = $this->applicant->spouse?->spouse_birthday;
         $this->spouse_civil_status = $this->applicant->spouse?->spouse_civil_status;
         $this->spouse_gender = $this->applicant->spouse?->spouse_gender;
+        $this->spouse_fourteen = $this->applicant->spouse?->spouse_fourteen ? 'Yes' : 'No';
 
         $this->classification = $this->applicant->housingOccupancies->pluck('id');
         $this->structure = $this->applicant->structure;
