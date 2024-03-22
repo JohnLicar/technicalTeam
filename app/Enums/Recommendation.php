@@ -10,4 +10,5 @@ enum Recommendation: string
     case FOR_LHB = 'For LHB';
     case NOT_QUALIFIED = 'Not Qualified';
     case FOR_REVALIDATION = 'For Revalidation';
+    case FOR_HOUSE_DEMOLITION = 'For House Demolition';
 }

@@ -73,8 +73,8 @@
                                 <x-input.floating wire:model='name' class="border-gray-500" :value="'Name'"
                                     :name="'name'" :id="'name'" :type="'text'" :bg="'white'" />
 
-                                <x-input.floating wire:model='birthday' class="border-gray-500" :value="'Birthday'"
-                                    :name="'birthday'" :id="'birthday'" :type="'date'" :bg="'white'" />
+                                <x-date-picker wire:model.live='birthday' class="border-gray-500"
+                                    :value="'Birthday (optional)'" :name="'birthday'" />
 
                                 <div class="relative">
                                     <select wire:model='civil_status' required name="civil_status" id="civil_status"
@@ -120,6 +120,29 @@
                                     <p class="mt-2 text-sm text-left text-red-600 ">{{ $message }}</p>
                                     @enderror
                                 </div>
+
+                                <div class="relative">
+                                    <select required wire:model='fourteen' name="fourteen" id="fourteen"
+                                        class="block w-full p-3 text-sm text-gray-900 bg-transparent border-gray-500 rounded-lg appearance-none border-1 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                                        <option value="" selected>
+                                            Select if part of 14K Endorsement
+                                        </option>
+                                        <option value='1'>
+                                            Yes
+                                        </option>
+                                        <option value='0'>
+                                            No
+                                        </option>
+
+                                    </select>
+                                    <p
+                                        class="absolute px-2 text-base text-gray-500 duration-150 ease-in-out bg-white pointer-events-none left-2 peer-valid:left-1 peer-valid:top-0 peer-valid:-translate-y-2 top-3 peer-valid:text-xs ">
+                                        Select if part of 14K Endorsement
+                                    </p>
+                                    @error('fourteen')
+                                    <p class="mt-2 text-sm text-left text-red-600 ">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 
@@ -131,9 +154,8 @@
                                 <x-input.floating wire:model='spouse_name' class="border-gray-500" :value="'Name'"
                                     :name="'spouse_name'" :id="'spouse_name'" :type="'text'" :bg="'white'" />
 
-                                <x-input.floating wire:model='spouse_birthday' class="border-gray-500"
-                                    :value="'Birthday'" :name="'birthday'" :id="'birthday'" :type="'date'"
-                                    :bg="'white'" />
+                                <x-date-picker wire:model='spouse_birthday' class="border-gray-500"
+                                    :value="'Birthday (optional)'" :name="'spouse_birthday'" :id="'spouse_birthday'" />
 
                                 <div class="relative">
                                     <select wire:model='spouse_civil_status' name="spouse_civil_status"
@@ -177,6 +199,30 @@
                                         Select Gender
                                     </p>
                                     @error('spouse_gender')
+                                    <p class="mt-2 text-sm text-left text-red-600 ">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="relative">
+                                    <select required wire:model='spouse_fourteen' name="spouse_fourteen"
+                                        id="spouse_fourteen"
+                                        class="block w-full p-3 text-sm text-gray-900 bg-transparent border-gray-500 rounded-lg appearance-none border-1 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                                        <option value="" selected>
+                                            Select if part of 14K Endorsement
+                                        </option>
+                                        <option value='1'>
+                                            Yes
+                                        </option>
+                                        <option value='0'>
+                                            No
+                                        </option>
+
+                                    </select>
+                                    <p
+                                        class="absolute px-2 text-base text-gray-500 duration-150 ease-in-out bg-white pointer-events-none left-2 peer-valid:left-1 peer-valid:top-0 peer-valid:-translate-y-2 top-3 peer-valid:text-xs ">
+                                        Select if part of 14K Endorsement
+                                    </p>
+                                    @error('spouse_fourteen')
                                     <p class="mt-2 text-sm text-left text-red-600 ">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -238,9 +284,10 @@
                             <div class="grid grid-cols-1 gap-4 mt-3 md:grid-cols-2">
                                 <div>
                                     <p class="mt-6 text-lg font-medium">Date of validation</p>
-                                    <x-input.floating wire:model='date_of_validation' class="mt-4 border-gray-500"
-                                        :name="'date_of_validation'" :id="'date_of_validation'" :type="'date'"
-                                        :bg="'white'" />
+
+                                    <x-date-picker wire:model.live='date_of_validation' class="mt-4 border-gray-500"
+                                        :value="'Date of Validation'" :name="'date_of_validation'"
+                                        :id="'date_of_validation'" />
                                 </div>
 
                                 <div>
@@ -474,11 +521,6 @@
                             @endif
                         </div>
 
-                        <div>
-                            @foreach ($errors as $error)
-                            <p class="mt-2 text-left text-red-600 trext-sm ">{{ $error->message }}</p>
-                            @endforeach
-                        </div>
                         <div class="flex justify-end gap-4 mt-5 ">
 
                             <x-button.text btn-type="warning" type="button" isLink

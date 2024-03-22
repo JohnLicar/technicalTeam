@@ -53,13 +53,15 @@ class View extends Component
 
     public function mount()
     {
+
         $this->applicant->load('spouse', 'validator', 'encoder', 'barangay', 'purok', 'housingOccupancies', 'validationAttachment', 'resettlement');
+        // dd($this->applicant);
         $this->barangay_id = $this->applicant->barangay?->barangay;
         $this->purok_id = $this->applicant->purok?->purok;
 
         $this->name = $this->applicant->name;
         $this->birthday = $this->applicant->birthday;
-        $this->civil_status = $this->applicant->civil_status->value;
+        $this->civil_status = $this->applicant->civil_status;
         $this->gender = $this->applicant->gender;
 
         $this->spouse_name = $this->applicant->spouse?->spouse_name;

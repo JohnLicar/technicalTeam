@@ -6,6 +6,8 @@ use App\Enums\CivilStatus;
 use App\Enums\Gender;
 use App\Enums\Recommendation;
 use App\Enums\StatusEnum;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,11 +24,16 @@ class Applicant extends Model
 
     protected $guarded = [];
 
-    protected $casts = [
-        /* ... */
-        'civil_status' => CivilStatus::class,
-        'gender' => Gender::class,
-    ];
+    protected $dates = ['birthday'];
+
+    protected function casts(): array
+    {
+        return [
+            'civil_status' => CivilStatus::class,
+            'gender' => Gender::class,
+            'birthday' => 'date:Y-m-d',
+        ];
+    }
 
     public static function search($search)
     {

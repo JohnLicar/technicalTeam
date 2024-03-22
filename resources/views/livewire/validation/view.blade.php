@@ -103,7 +103,7 @@
                                     <p class="mt-6 text-lg font-medium">Structure</p>
                                     <div class="grid grid-cols-1 mt-4 md:grid-cols-2 ">
                                         <div class="flex mt-2">
-                                            <input wire:model='structure' id="with_structure" name="structure"
+                                            <input wire:model='structure' id="with_structure" name="with_structure"
                                                 type="radio" value="With Structure" disabled
                                                 class="text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none">
                                             <label for="with_structure" class="ml-2 text-sm font-medium text-gray-500">
@@ -112,7 +112,7 @@
                                         </div>
 
                                         <div class="flex mt-2">
-                                            <input wire:model='structure' id="no_structure" name="structure"
+                                            <input wire:model='structure' id="no_structure" name="no_structure"
                                                 type="radio" value="No Structure" disabled
                                                 class="text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none">
                                             <label for="no_structure" class="ml-2 text-sm font-medium text-gray-500">
@@ -153,8 +153,8 @@
 
                                     <div class="grid grid-cols-1 my-4 md:grid-cols-2">
                                         <div class="flex mt-2">
-                                            <input wire:model='resettlement' id="with_resettlement" name="structure"
-                                                type="radio" value=1 disabled
+                                            <input wire:model='resettlement' id="with_resettlement"
+                                                name="with_resettlement" type="radio" value=1 disabled
                                                 class="text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none">
                                             <label for="with_resettlement"
                                                 class="ml-2 text-sm font-medium text-gray-500">
@@ -163,7 +163,7 @@
                                         </div>
 
                                         <div class="flex mt-2">
-                                            <input wire:model='resettlement' id="no_resettlement" name="structure"
+                                            <input wire:model='resettlement' id="no_resettlement" name="no_resettlement"
                                                 type="radio" value=0 disabled
                                                 class="text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none">
                                             <label for="no_resettlement" class="ml-2 text-sm font-medium text-gray-500">

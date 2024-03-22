@@ -10,6 +10,7 @@ use App\Models\HousingProject;
 use App\Models\Purok;
 use App\Models\ResettlementSite;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
@@ -31,11 +32,13 @@ class Create extends Component
     public $birthday;
     public $civil_status;
     public $gender;
+    public $fourteen;
 
     public $spouse_name;
     public $spouse_birthday;
     public $spouse_civil_status;
     public $spouse_gender;
+    public $spouse_fourteen;
 
     public $classification = [];
     public $structure;
@@ -59,6 +62,12 @@ class Create extends Component
     public $remarks;
 
     public $attachments = [];
+
+    protected $casts = [
+        'birthday' => 'date:Y-m-d',
+        'spouse_birthday' => 'date:Y-m-d',
+    ];
+
 
 
     #[Computed()]
@@ -108,7 +117,8 @@ class Create extends Component
     {
         $this->authorize("create applicant");
 
-        $validated =  $this->validate([
+        // dd($this->fourteen, $this->spouse_fourteen);
+        $this->validate([
             'barangay_id' => 'required',
             'purok_id' => 'nullable',
 
@@ -116,10 +126,11 @@ class Create extends Component
             'birthday' => 'nullable|date',
             'civil_status' => 'required',
             'gender' => 'required',
+            'fourteen' => 'nullable|boolean',
 
             'structure' => 'required',
 
-            'date_of_validation' => 'required',
+            'date_of_validation' => 'required|date',
 
             'recommendation' => 'required',
 
@@ -129,6 +140,7 @@ class Create extends Component
             'spouse_birthday' => 'nullable|date',
             'spouse_civil_status' => 'required_with:spouse_name',
             'spouse_gender' => 'required_with:spouse_name',
+            'spouse_fourteen' => 'nullable|boolean',
 
             'classification' => 'required',
 
@@ -161,16 +173,16 @@ class Create extends Component
     {
         try {
             DB::beginTransaction($uploadAttachmentsAction);
-            // return DB::transaction(function () use ($uploadAttachmentsAction) {
             $applicant = Applicant::create([
                 'barangay_id' => $this->barangay_id,
                 'purok_id' =>  $this->purok_id,
                 'name' => $this->name,
-                'birthday' => $this->birthday,
+                'fourteen' => $this->fourteen,
+                'birthday' => Carbon::parse($this->birthday)->format('Y-m-d'),
                 'civil_status' => $this->civil_status,
                 'gender' => $this->gender,
                 'structure' => $this->structure,
-                'date_of_validation' => $this->date_of_validation,
+                'date_of_validation' => Carbon::parse($this->date_of_validation)->format('Y-m-d'),
                 'recommendation' => $this->recommendation,
                 'remarks' => $this->remarks,
                 'resettlements' => $this->resettlement,
@@ -180,9 +192,10 @@ class Create extends Component
             if ($this->spouse_name) {
                 $applicant->spouse()->create([
                     'spouse_name' => $this->spouse_name,
-                    'spouse_birthday' => $this->spouse_birthday,
+                    'spouse_birthday' => Carbon::parse($this->spouse_birthday)->format('Y-m-d'),
                     'spouse_civil_status' => $this->spouse_civil_status,
                     'spouse_gender' => $this->gender,
+                    'spouse_fourteen' => $this->fourteen,
                 ]);
             }
 
@@ -238,6 +251,7 @@ class Create extends Component
             'birthday',
             'civil_status',
             'gender',
+            'fourteen',
             'structure',
             'date_of_validation',
             'recommendation',
@@ -246,6 +260,7 @@ class Create extends Component
             'spouse_birthday',
             'spouse_civil_status',
             'spouse_gender',
+            'spouse_fourteen',
             'classification',
             'resettlement',
             'site',

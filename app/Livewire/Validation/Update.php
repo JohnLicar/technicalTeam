@@ -12,6 +12,7 @@ use App\Models\HousingOccupancy;
 use App\Models\HousingProject;
 use App\Models\Purok;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Enum;
@@ -168,11 +169,11 @@ class Update extends Component
                 'barangay_id' => $this->barangay_id,
                 'purok_id' =>  $this->purok_id,
                 'name' => $this->name,
-                'birthday' => $this->birthday,
+                'birthday' => Carbon::parse($this->birthday)->format('Y-m-d'),
                 'civil_status' => $this->civil_status,
                 'gender' => $this->gender,
                 'structure' => $this->structure,
-                'date_of_validation' => $this->date_of_validation,
+                'date_of_validation' => Carbon::parse($this->date_of_validation)->format('Y-m-d'),
                 'recommendation' => $this->recommendation,
                 'remarks' => $this->remarks,
                 'resettlements' => $this->resettlement,
@@ -181,7 +182,7 @@ class Update extends Component
             if ($this->spouse_name) {
                 $this->applicant->spouse()->update([
                     'spouse_name' => $this->spouse_name,
-                    'spouse_birthday' => $this->spouse_birthday,
+                    'spouse_birthday' => Carbon::parse($this->spouse_birthday)->format('Y-m-d'),
                     'spouse_civil_status' => $this->spouse_civil_status,
                     'spouse_gender' => $this->spouse_gender,
                 ]);
