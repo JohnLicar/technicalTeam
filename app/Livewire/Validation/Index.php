@@ -29,14 +29,8 @@ class Index extends Component
     #[Url]
     public string $search = "";
 
-    public string $applicantCount = "";
     public string $withResettlementCount = "";
-    public string $forVerificationCount = "";
-    public string $forPopCount = "";
-    public string $forAdminDemoCount = "";
-    public string $forLHBCount = "";
-    public string $notQualifiedCount = "";
-    public string $reValidationCount = "";
+
 
     public string $barangay_id = "";
     public string $purok_id = "";

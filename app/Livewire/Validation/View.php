@@ -57,7 +57,7 @@ class View extends Component
     {
 
         $this->applicant->load('spouse', 'validator', 'encoder', 'barangay', 'purok', 'housingOccupancies', 'validationAttachment', 'resettlement');
-        // dd($this->applicant);
+
         $this->barangay_id = $this->applicant->barangay?->barangay;
         $this->purok_id = $this->applicant->purok?->purok;
 
