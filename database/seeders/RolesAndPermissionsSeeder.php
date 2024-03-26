@@ -33,10 +33,9 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'edit purok']);
         Permission::create(['name' => 'delete purok']);
 
-        Permission::create(['name' => 'create social prep date']);
-        Permission::create(['name' => 'edit social prep date']);
         Permission::create(['name' => 'view POP']);
-        Permission::create(['name' => 'edit social prep file']);
+        Permission::create(['name' => 'edit social prep data']);
+        Permission::create(['name' => 'social prep']);
 
 
         $validatorPermission = [
@@ -45,7 +44,6 @@ class RolesAndPermissionsSeeder extends Seeder
         ];
 
         $socialPrepPermission = [
-            'create social prep date',
             'view POP',
         ];
 

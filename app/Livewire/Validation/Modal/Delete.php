@@ -3,12 +3,13 @@
 namespace App\Livewire\Validation\Modal;
 
 use App\Models\Applicant;
+use Livewire\Attributes\Locked;
 use LivewireUI\Modal\ModalComponent;
 
 class Delete extends ModalComponent
 {
 
-
+    #[Locked]
     public ?Applicant $applicant;
 
     public function render()

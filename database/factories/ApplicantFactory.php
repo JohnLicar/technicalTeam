@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\Recommendation;
 use App\Models\Barangay;
 use App\Models\HousingOccupancy;
 use App\Models\User;
@@ -23,7 +24,8 @@ class ApplicantFactory extends Factory
         $structure = $this->faker->randomElement(['With Structure', 'No Structure']);
         $gender = $this->faker->randomElement(['Male', 'Female']);
         $name = $this->faker->name($gender);
-        // User::all()->random()->id,
+        $user =  User::all()->random();
+        $user_id =  User::all()->random();
         return [
             'barangay_id' => Barangay::get('id')->random()->id,
             'name' => $name,
@@ -31,9 +33,12 @@ class ApplicantFactory extends Factory
             'civil_status' => $civilStatus,
             'gender' => $gender,
             'structure' => $structure,
-            'recommendation' => $this->faker->paragraph(1),
+            'recommendation' => $this->faker->randomElement(collect(Recommendation::cases())->pluck('value')),
             'remarks' => $this->faker->paragraph(1),
-            'user_id' => User::factory(),
+            'validated_by' => $user,
+            'user_id' => $user_id,
+            'date_of_validation' => $this->faker->dateTimeBetween('-5 days', 'now'),
+            'created_at' => $this->faker->dateTimeBetween('-5 days', 'now'),
         ];
     }
 }

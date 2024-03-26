@@ -43,7 +43,6 @@ class Dashboard extends Component
     {
         return view(
             'livewire.dashboard',
-
             [
                 'dailyValidated' => $dailyValidated->build(),
                 'encodedPerDay' => $encodedPerDay->build()

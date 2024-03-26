@@ -17,6 +17,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Enum;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -24,6 +25,7 @@ class Update extends Component
 {
     use WithFileUploads, AuthorizesRequests;
 
+    #[Locked]
     public  $applicant;
 
     public $barangay_id;
