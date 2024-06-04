@@ -4,16 +4,15 @@ namespace App\Actions;
 
 use App\Models\Applicant;
 
-class UploadAttachmentsAction
+class SocialPrepAttachmentsAction
 {
-
     public function execute($files = [], Applicant $applicant)
     {
         foreach ($files as  $file) {
             $requirement = $applicant->id . '-' . time() . '-' . $file->getClientOriginalName();
-            $file->storeAs('public/attachment/validation/', $requirement);
+            $file->storeAs('public/attachment/socialPrep/', $requirement);
             $requirements[] = ['file' => $requirement];
         }
-        $applicant->validationAttachment()->createMany($requirements);
+        $applicant->socialPrepAttachment()->createMany($requirements);
     }
 }

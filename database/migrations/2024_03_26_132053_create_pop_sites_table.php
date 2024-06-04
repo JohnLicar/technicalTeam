@@ -3,6 +3,7 @@
 use App\Models\Applicant;
 use App\Models\HousingProject;
 use App\Models\ResettlementSite;
+use App\Models\SocialPrepDay;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,8 +15,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resettlement_sites', function (Blueprint $table) {
+        Schema::create('pop_sites', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(SocialPrepDay::class)->constrained();
             $table->foreignIdFor(Applicant::class)->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
@@ -23,7 +25,6 @@ return new class extends Migration
             $table->string('block');
             $table->string('lot');
             $table->string('phase')->nullable();
-            $table->string('remark')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resettlement_sites');
+        Schema::dropIfExists('pop_sites');
     }
 };

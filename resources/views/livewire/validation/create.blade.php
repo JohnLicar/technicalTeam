@@ -74,7 +74,7 @@
                                     :name="'name'" :id="'name'" :type="'text'" :bg="'white'" />
 
                                 <x-date-picker wire:model.live='birthday' class="border-gray-500"
-                                    :value="'Birthday (optional)'" :name="'birthday'" />
+                                    :value="'Birthday (optional)'" :id="'birthday'" :name="'birthday'" />
 
                                 <div class="relative">
                                     <select wire:model='civil_status' required name="civil_status" id="civil_status"
@@ -204,8 +204,7 @@
                                 </div>
 
                                 <div class="relative">
-                                    <select required wire:model='spouse_fourteen' name="spouse_fourteen"
-                                        id="spouse_fourteen"
+                                    <select wire:model='spouse_fourteen' name="spouse_fourteen" id="spouse_fourteen"
                                         class="block w-full p-3 text-sm text-gray-900 bg-transparent border-gray-500 rounded-lg appearance-none border-1 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                                         <option value="" selected>
                                             Select if part of 14K Endorsement
@@ -482,7 +481,10 @@
                                 </label>
                             </div>
                             @error('attachments')
-                            <p class="mt-2 text-left text-red-600 trext-sm ">{{ $message }}</p>
+                            <p class="mt-2 text-sm text-left text-red-600 ">{{ $message }}</p>
+                            @enderror
+                            @error('attachments.*')
+                            <p class="mt-2 text-sm text-left text-red-600 ">{{ $message }}</p>
                             @enderror
 
                             @if ($attachments)

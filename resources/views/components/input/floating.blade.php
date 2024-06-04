@@ -1,4 +1,5 @@
-@props(['disabled' => false, 'value'=> '', 'type' => 'text', 'name' => '', 'id' => '', 'bg' => 'white'])
+@props(['disabled' => false, 'value'=> '', 'type' => 'text', 'name' => '', 'id' => '', 'bg' => 'white', 'text'=>
+'gray-500', 'peer_text'=> 'text-blue-600'])
 
 <div>
     <div class="relative">
@@ -12,11 +13,11 @@
         placeholder=" " />
 
         <label for="{{ $id }}" class='block absolute text-base border
-        text-gray-500
+        text-{{ $text }}
             rounded-full border-none truncate md:whitespace-normal
             duration-300 transform
             -translate-y-5 scale-75 top-2 origin-[0] bg-{{ $bg }} px-2 peer-focus:px-2
-            peer-focus:text-blue-600
+            peer-focus:{{ $peer_text }}
             peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2
             peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-5 left-1'>
             {{ $value ?? $slot }}

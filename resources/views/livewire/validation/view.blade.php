@@ -2,15 +2,21 @@
     <div class="py-12">
         <div class="max-w-4xl px-6 mx-auto md:px-8">
             <div class="my-6 text-2xl font-semibold text-gray-700">
-                <div class="mb-6">
+                <div>
                     <p class="text-3xl leading-8">
                         Viewing records of
                         <i class="italic text-blue-500">{{ $name }}</i>
                     </p>
                 </div>
 
+                <div class="my-6">
+                    <p class="text-xl leading-8">
+                        Validation Record
+                    </p>
+                </div>
+
                 <div>
-                    <form enctype="multipart/form-data" wire:submit="addNewRecord">
+                    <form>
                         <div>
                             <p class="mt-5 text-lg font-medium">Barangay Information</p>
                             <p class="text-sm text-gray-500">Enter applicant's barangay information</p>
@@ -224,10 +230,10 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div class="mb-2">
                             @if (!$attachments->count() == 0)
                             <p class="text-lg font-medium">Validation Attachement</p>
-                            <div class="mt-5 font-normal text-md">
+                            <div class="mt-3 font-normal text-md">
                                 <div class="flex flex-wrap gap-2 ">
                                     @foreach ($attachments as $index => $attachment)
                                     <div class="flex flex-row">
@@ -235,7 +241,7 @@
                                             <div class="text-sm font-normal">
                                                 <li>
                                                     <x-button.text btn-type="success" isLink target=”_blank”
-                                                        href="{{ asset('storage/images/attachments/'. $attachment->file)}}">
+                                                        href="{{ asset('storage/attachment/validation/'. $attachment->file)}}">
                                                         {{ $attachment->file }}
                                                     </x-button.text>
                                                 </li>
@@ -248,15 +254,89 @@
                             @endif
                         </div>
 
-
-                        <div class="flex justify-end gap-4 mt-5 ">
-
-                            <x-button.text btn-type="warning" type="button" isLink
-                                href="{{ route('validation.index') }}" wire:navigate>
-                                Return
-                            </x-button.text>
+                        @can('view POP')
+                        <hr class="mt-3">
+                        <div class="my-6">
+                            <p class="text-xl leading-8">
+                                Social Prep Record
+                            </p>
                         </div>
-                    </form>
+
+                        <form>
+                            <div>
+                                {{--
+                                <x-date-picker disabled wire:model='prep_day' class="mb-4 border-gray-500 outline-none"
+                                    :value="'Date of Social Prep'" :name="'prep_day'" :id="'prep_day'"
+                                    autocomplete="false" /> --}}
+
+                                <x-input.floating wire:model='prep_day' disabled
+                                    class="mb-4 border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
+                                    :value="'Date of Social Prep'" :name="'prep_day'" :id="'prep_day'" :type="'text'"
+                                    :bg="'white'" :type="'date'" />
+
+                                <x-input.floating wire:model='housing_project_id' disabled
+                                    class="border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
+                                    :value="'Housing Project'" :name="'housing_project_id'" :id="'housing_project_id'"
+                                    :type="'text'" :bg="'white'" />
+
+                                <div class="grid grid-cols-3 gap-3 mt-4">
+
+                                    <x-input.floating wire:model='popPhase' disabled
+                                        class="border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
+                                        :value="'Housing Project'" :name="'housing_project_id'"
+                                        :id="'housing_project_id'" :type="'text'" :bg="'white'" />
+
+                                    <x-input.floating wire:model='popBlock' disabled
+                                        class="border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
+                                        :value="'Housing Project'" :name="'housing_project_id'"
+                                        :id="'housing_project_id'" :type="'text'" :bg="'white'" />
+
+                                    <x-input.floating wire:model='popLot' disabled
+                                        class="border-slate-300 placeholder-slate-400 focus:outline-none disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
+                                        :value="'Housing Project'" :name="'housing_project_id'"
+                                        :id="'housing_project_id'" :type="'text'" :bg="'white'" />
+                                </div>
+                            </div>
+
+                            @if (!$socialPrepAttachment->count() == 0)
+                            <p class="mt-3 text-lg font-medium">Social Prep Attachement</p>
+                            <div class="mt-3 font-normal text-md">
+                                <div class="flex flex-wrap gap-2 ">
+                                    @foreach ($socialPrepAttachment as $index => $attachment)
+                                    <div class="flex flex-row">
+                                        <div class="flex items-center justify-center ">
+                                            <div class="text-sm font-normal">
+                                                <li>
+                                                    <x-button.text btn-type="success" isLink target=”_blank”
+                                                        href="{{ asset('storage/attachment/socialPrep/'. $attachment->file)}}">
+                                                        {{ $attachment->file }}
+                                                    </x-button.text>
+                                                </li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @endif
+
+                            @if ($attendance)
+                            <p class="mt-3 text-lg font-medium">Social Prep Attendance</p>
+                            <div class="mt-3 font-normal text-md">
+                                <div class="flex flex-wrap gap-2 ">
+                                    <div class="text-sm font-normal">
+                                        <li>
+                                            <x-button.text btn-type="success" isLink target=”_blank”
+                                                href="{{ asset('storage/attachment/attendance/'. $attendance)}}">
+                                                {{ $attendance }}
+                                            </x-button.text>
+                                        </li>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                        </form>
+                        @endcan
                 </div>
             </div>
         </div>

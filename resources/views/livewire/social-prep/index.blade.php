@@ -14,7 +14,7 @@
             <div class="flex justify-between">
                 <div>
                     @can('create applicant')
-                    <x-button.solid wire:click='confirmSocialPrep'
+                    <x-button.solid wire:click="$dispatch('openModal', {component: 'social-prep.modal.prep-day'})"
                         class="flex items-center justify-center bg-blue-500 hover:bg-blue-600">
 
                         <svg class="mr-2" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -44,7 +44,7 @@
                                 d="M6 3C4.34315 3 3 4.34315 3 6V18C3 19.6569 4.34315 21 6 21H18C19.6569 21 21 19.6569 21 18V6C21 4.34315 19.6569 3 18 3H6ZM18 5H6C5.44772 5 5 5.44772 5 6V18C5 18.5523 5.44772 19 6 19H18C18.5523 19 19 18.5523 19 18V6C19 5.44772 18.5523 5 18 5Z"
                                 fill="currentColor" />
                         </svg>
-                        {{ __('Create Social Prep Date') }}
+                        {{ __('Upload attendance to Social Prep') }}
                     </x-button.solid>
                     @endcan
                 </div>
@@ -81,13 +81,15 @@
             <div class="container mt-6 overflow-x-auto">
                 <x-table>
                     <x-slot name="head">
-                        <x-table.heading>
-                        </x-table.heading>
+
                         <x-table.heading>
                             #
                         </x-table.heading>
                         <x-table.heading>
                             Barangay
+                        </x-table.heading>
+                        <x-table.heading>
+                            Social Prep
                         </x-table.heading>
                         <x-table.heading>
                             Name
@@ -111,16 +113,16 @@
                     </x-slot>
 
                     <x-slot name="body">
-                        @forelse ($this->applicants as $index => $applicant)
+                        @forelse ($applicants as $index => $applicant)
                         <x-table.row striped wire:key="{{$index}}" wire:loading.class="opacity-50">
-                            <x-table.cell>
+                            {{-- <x-table.cell>
                                 <input wire:model='selectedApplicant' type="checkbox" value="{{ $applicant->id }}"
                                     id="applicant-{{ $applicant->id }}"
                                     class="text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                            </x-table.cell>
+                            </x-table.cell> --}}
 
                             <x-table.cell class="py-5">
-                                {{$this->applicants->firstItem() + $loop->index }}
+                                {{$applicants->firstItem() + $loop->index }}
                             </x-table.cell>
 
                             <x-table.cell>
@@ -132,6 +134,12 @@
                                     }}
                                 </div>
                                 @endif
+                            </x-table.cell>
+
+                            <x-table.cell>
+                                <x-chip :event="$applicant->pop_count > 0 ? 'Yes' : 'No'">
+
+                                </x-chip>
                             </x-table.cell>
 
                             <x-table.cell>
@@ -184,7 +192,7 @@
                 </x-table>
             </div>
             <div class="mt-5 mb-5">
-                {{ $this->applicants->onEachSide(0)->links() }}
+                {{ $applicants->onEachSide(0)->links() }}
             </div>
         </div>
     </div>

@@ -1,8 +1,6 @@
 <?php
 
 use App\Models\Applicant;
-use App\Models\HousingProject;
-use App\Models\ResettlementSite;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,17 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resettlement_sites', function (Blueprint $table) {
+        Schema::create('social_prep_attachments', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Applicant::class)->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignIdFor(HousingProject::class);
-            $table->string('block');
-            $table->string('lot');
-            $table->string('phase')->nullable();
-            $table->string('remark')->nullable();
+            $table->string('file');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resettlement_sites');
+        Schema::dropIfExists('social_prep_attachments');
     }
 };

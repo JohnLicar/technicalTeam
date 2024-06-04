@@ -5,6 +5,7 @@ namespace App\Livewire\Validation;
 use App\Models\Applicant;
 use App\Models\HousingOccupancy;
 use App\Models\User;
+use Carbon\Carbon;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
@@ -47,6 +48,15 @@ class View extends Component
 
     public $attachments;
 
+
+    public  $attendance;
+    public  $prep_day;
+    public  $housing_project_id;
+    public  $popPhase;
+    public  $popBlock;
+    public  $popLot;
+    public $socialPrepAttachment = [];
+
     #[Computed()]
     public function housingOccupancies()
     {
@@ -56,7 +66,7 @@ class View extends Component
     public function mount()
     {
 
-        $this->applicant->load('spouse', 'validator', 'encoder', 'barangay', 'purok', 'housingOccupancies', 'validationAttachment', 'resettlement');
+        $this->applicant->load('spouse', 'validator', 'encoder', 'barangay', 'purok', 'housingOccupancies', 'validationAttachment', 'resettlement', 'socialPrepAttachment', 'pop');
 
         $this->barangay_id = $this->applicant->barangay?->barangay;
         $this->purok_id = $this->applicant->purok?->purok;
@@ -90,6 +100,14 @@ class View extends Component
 
         $this->remarks = $this->applicant->remarks;
         $this->attachments = $this->applicant->validationAttachment;
+        $this->socialPrepAttachment = $this->applicant->socialPrepAttachment;
+
+        $this->attendance = $this->applicant->pop?->propDate?->attachment ?? '';
+        $this->prep_day = $this->applicant->pop?->propDate?->prep_day ?? '';
+        $this->housing_project_id = $this->applicant->pop?->popSite->project ?? '';
+        $this->popPhase = $this->applicant->pop?->phase ?? '';
+        $this->popBlock = $this->applicant->pop?->block ?? '';
+        $this->popLot = $this->applicant->pop?->lot ?? '';
     }
 
     public function render()

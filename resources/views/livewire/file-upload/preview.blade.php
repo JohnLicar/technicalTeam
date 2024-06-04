@@ -1,26 +1,20 @@
 <div x-data="{show: false}">
-    @if (!$applicant->validationAttachment)
-    <p class="mt-6 text-lg font-medium">Attachments:</p>
-    @endif
-    @foreach ($applicant->validationAttachment as $file)
-    <div class="my-2">
-        <ul class="list-disc">
-            <li>
-                <div class="flex gap-2">
-                    <button wire:click='setAttachmentId({{ $file->id }})' type="button"
-                        class="text-white bg-red-500 rounded-lg text-md " @click="show = true">
-                        x
-                    </button>
+    @foreach ($applicant->validationAttachment as $index => $file)
+    <div class="my-2 " wire:key="{{ $file->index }}">
+        <div class="flex items-center gap-2">
+            <button wire:click='setAttachmentId({{ $file }})' type="button"
+                class="p-1 text-sm text-white bg-red-500 rounded-full " @click="show = true">
+                x
+            </button>
 
-                    <x-button.text btnType="success" isLink target=”_blank”
-                        href="{{ asset('storage/images/attachments/'. $file->file)}}">
-                        {{ $file->file }}
-                    </x-button.text>
-            </li>
-        </ul>
+            <x-button.text btnType="success" isLink target=”_blank”
+                href="{{ asset('storage/images/validation/'. $file->file)}}"
+                class="text-sm truncate hover:bg-green-300 hover:rounded-full hover:text-gray-900 hover:p-1">
+                {{ $file->file }}
+            </x-button.text>
+        </div>
     </div>
     @endforeach
-
 
     <div x-on:close-modal.window="show = false" x-show=show x-transition:enter.duration.500ms
         x-transition:leave.duration.400ms class="fixed inset-0 z-10 overflow-y-auto" aria-labelledby="modal-title"
@@ -40,6 +34,7 @@
                                     d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                             </svg>
                         </div>
+
                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                             <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">
                                 Remove Attachment from this applicant
@@ -54,7 +49,7 @@
                     </div>
                 </div>
                 <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <button type="button" wire:click='removeAttachmentImage'
+                    <button type="button" wire:click='removeAttachmentImage' x-on:click="$wire.$refresh()"
                         class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                         Remove
                     </button>

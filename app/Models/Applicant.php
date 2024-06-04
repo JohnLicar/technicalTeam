@@ -77,9 +77,24 @@ class Applicant extends Model
         return $this->hasMany(ValidationAttachment::class, 'applicant_id', 'id');
     }
 
+    public function socialPrepAttachment()
+    {
+        return $this->hasMany(SocialPrepAttachment::class, 'applicant_id', 'id');
+    }
+
     public function resettlement()
     {
         return $this->hasOne(ResettlementSite::class);
+    }
+
+    public function popSite()
+    {
+        return $this->hasOne(ResettlementSite::class);
+    }
+
+    public function pop()
+    {
+        return $this->hasOne(PopSite::class);
     }
 
     public function scopeWithResettlement($query)

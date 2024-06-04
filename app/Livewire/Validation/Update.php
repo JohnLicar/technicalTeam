@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Enum;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -64,7 +65,6 @@ class Update extends Component
 
     public $remarks;
 
-    public $attachments = [];
     public $newAttachments = [];
 
     #[Computed()]
@@ -162,6 +162,7 @@ class Update extends Component
         $this->validator = $applicant->validator?->id;
     }
 
+    #[On('refresh_validation_update')]
     public function render()
     {
         $this->authorize('edit applicant');
@@ -216,7 +217,6 @@ class Update extends Component
             if ($this->newAttachments) {
                 $uploadAttachment->execute($this->newAttachments, $this->applicant);
             }
-
             $this->dispatch('showToast', ['type' => "success", 'message' => "Applicant Information Added successfully!", 'title' => "Success"]);
         });
     }

@@ -114,7 +114,7 @@ class Create extends Component
             'barangay_id' => 'required',
             'purok_id' => 'nullable',
 
-            'name' => 'required|min:5',
+            'name' => 'required|min:5|unique:applicants,name',
             'birthday' => 'nullable|date',
             'civil_status' => 'required',
             'gender' => 'required',
@@ -163,6 +163,9 @@ class Create extends Component
 
     private function saveApplicant($uploadAttachmentsAction)
     {
+        $birthday = $this->birthday == "" ?  null : Carbon::parse($this->birthday)->format('Y-m-d');
+        $spouse_birthday = $this->spouse_birthday == "" ?  null : Carbon::parse($this->spouse_birthday)->format('Y-m-d');
+
         try {
             DB::beginTransaction($uploadAttachmentsAction);
             $applicant = Applicant::create([
@@ -170,7 +173,7 @@ class Create extends Component
                 'purok_id' =>  $this->purok_id,
                 'name' => $this->name,
                 'fourteen' => $this->fourteen,
-                'birthday' => Carbon::parse($this->birthday)->format('Y-m-d'),
+                'birthday' =>   $birthday,
                 'civil_status' => $this->civil_status,
                 'gender' => $this->gender,
                 'structure' => $this->structure,
@@ -184,16 +187,16 @@ class Create extends Component
             if ($this->spouse_name) {
                 $applicant->spouse()->create([
                     'spouse_name' => $this->spouse_name,
-                    'spouse_birthday' => Carbon::parse($this->spouse_birthday)->format('Y-m-d'),
+                    'spouse_birthday' => $spouse_birthday,
                     'spouse_civil_status' => $this->spouse_civil_status,
                     'spouse_gender' => $this->gender,
                     'spouse_fourteen' => $this->fourteen,
                 ]);
             }
 
-            if ($this->resettlement == "1") {
+            if ($this->resettlement == 1) {
                 $applicant->resettlement()->create([
-                    'resettlement_site_id' => $this->site,
+                    'housing_project_id' => $this->site,
                     'block' => $this->block,
                     'lot' => $this->lot,
                     'phase' => $this->phase,
@@ -217,7 +220,7 @@ class Create extends Component
     public function checkResettlement($site, $block, $lot, $phase = null)
     {
         return ResettlementSite::with('site')
-            ->where('resettlement_site_id', $site)
+            ->where('housing_project_id', $site)
             ->where('block', $block)
             ->where('lot', $lot)
             ->where('phase', $phase)

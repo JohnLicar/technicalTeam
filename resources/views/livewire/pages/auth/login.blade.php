@@ -29,6 +29,20 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
+    <div class="hidden lg:block">
+        <div class="mb-4">
+            <img aria-hidden="true" class="object-cover mx-auto block mb-12 md:mb-0 sm:max-w-[60%] lg:w-6/12 "
+                src="{{ asset('images/Logo.png') }}" alt="Office" />
+            <p class="text-4xl font-medium text-white mt-7 sm:text-center">
+                Welcome Back
+            </p>
+            <p class="text-white sm:text-center">
+                Please log-in your account to proceed.
+            </p>
+        </div>
+
+    </div>
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <div x-data="{ show: true }" x-show.transition.opacity.out.duration.2000ms="show">
@@ -37,21 +51,17 @@ new #[Layout('layouts.guest')] class extends Component
 
     <form wire:submit="login">
         <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="form.email" id="email" class="block w-full mt-1" type="email" name="email"
-                required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="mt-4">
+            <x-input.floating wire:model="form.email" for="email" class="text-white border-gray-100"
+                :value="__('Email')" :name="'email'" :id="'email'" :type="'email'" :bg="'cool-gray-500'" :text="'white'"
+                :peer_text="'text-white'" required autofocus autocomplete="username" />
         </div>
-
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input.floating wire:model="form.password" for="password" class="text-white border-gray-100"
+                :value="__('Password')" :name="'password'" :id="'password'" :type="'password'" :bg="'cool-gray-500'"
+                :text="'white'" :peer_text="'text-white'" required autofocus autocomplete="current-password" />
 
-            <x-text-input wire:model="form.password" id="password" class="block w-full mt-1" type="password"
-                name="password" required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Remember Me -->
@@ -60,28 +70,26 @@ new #[Layout('layouts.guest')] class extends Component
                 <label for="remember" class="inline-flex items-center">
                     <input wire:model="form.remember" id="remember" type="checkbox"
                         class="text-indigo-600 border-gray-300 rounded shadow-sm focus:ring-indigo-500" name="remember">
-                    <span class="text-sm text-gray-600 ms-2">{{ __('Remember me') }}</span>
+                    <span class="text-sm text-gray-100 ms-2">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
             @if (Route::has('password.request'))
-            <a class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            <a class="text-sm text-gray-100 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 href="{{ route('password.request') }}" wire:navigate>
                 {{ __('Forgot your password?') }}
             </a>
             @endif
         </div>
-
         <div class="flex items-center justify-end mt-4">
 
-            <a class="text-sm text-gray-600 rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                href="{{ route('register') }}" wire:navigate>
+            <x-button.text class="mr-2 text-sm text-gray-100 hover:text-gray-900" isLink href="{{ route('register') }}">
                 {{ __('Register') }}
-            </a>
+            </x-button.text>
 
-            <x-primary-button class="ms-3">
+            <x-button.solid class="ms-3" class="flex items-center justify-center bg-blue-500 hover:bg-blue-300">
                 {{ __('Log in') }}
-            </x-primary-button>
+            </x-button.solid>
         </div>
     </form>
 </div>
