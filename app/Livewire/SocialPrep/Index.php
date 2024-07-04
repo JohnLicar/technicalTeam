@@ -24,7 +24,8 @@ class Index extends Component
     #[On('refresh-social-prep-index')]
     public function render()
     {
-        $this->authorize('view POP');
+
+        $this->authorize("view POP");
 
         $applicants =  Applicant::with('spouse', 'barangay', 'housingOccupancies', 'validator')
             ->withCount('pop')

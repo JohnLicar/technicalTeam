@@ -22,7 +22,7 @@ class ApplicantObserver
      */
     public function creating(Applicant $applicant)
     {
-        $applicant->user_id = auth()->id();
+        // $applicant->user_id = auth()->id();
     }
 
     /**
